@@ -1,0 +1,24 @@
+CC      =  gcc
+CFLAGS  =  -O -Wall -lm
+EXEC    =  bin/readF.out
+OUT		=  src/
+
+OBJS    =  $(OUT)distance_calculator.o $(OUT)reader2.o 
+
+$(EXEC): $(OBJS)
+	@echo "linking ..."
+	@$(CC)  $(CFLAGS)  -o $(EXEC)  $(OBJS)  -lm
+
+$(OBJS): %.o : %.c
+	@echo "maremma troja..."
+	$(CC) $(CFLAGS) -c $< $ -o $@
+
+
+clean:
+	rm -f $(OUT)*.o
+
+
+#gcc -c src/distance_calculator.c -o bin/distance_calculator.o -lm
+#gcc -c src/reader2.c -o bin/reader2.o -lm
+#gcc bin/reader2.o bin/distance_calculator.o -o bin/readF.out -lm
+

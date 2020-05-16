@@ -1,0 +1,22 @@
+
+CC      =  gcc
+CFLAGS  =  -O -Wall -lm
+EXEC    =  bin/readF.out
+SRC	    =  src/
+INCLS   =  $(SRC)distance_calculator.h
+
+
+OBJS    =  distance_calculator.o reader2.o 
+
+$(EXEC): distance_calculator.o reader2.o src/distance_calculator.h
+	$(CC)  $(CFLAGS)  -o $(EXEC) reader2.o -lm
+
+reader2.o: src/distance_calculator.h distance_calculator.o
+	$(CC)  $(CFLAGS)  -c  $(SRC)reader2.c -lm
+
+distance_calculator.o:
+	$(CC)  $(CFLAGS)  -c  $(SRC)distance_calculator.c -lm
+
+clean:
+	rm -f $(SRC)*.o core
+
